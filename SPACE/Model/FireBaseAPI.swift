@@ -83,7 +83,7 @@ struct FirebaseAPI {
     }
     
     func checkUser(userID: String, completionHandler: @escaping (Any?) -> Void) {
-        
+    
         ref.child("User").child(userID).observeSingleEvent(of: .value, with: { snapshot in
             
             let value = snapshot.value

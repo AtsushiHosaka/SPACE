@@ -130,7 +130,7 @@ class MakePostViewController: UIViewController, UINavigationControllerDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "toAddPostToConstellationView" {
-            
+        
             let addPostToConstellationView: AddPostToConstellationViewController = segue.destination as! AddPostToConstellationViewController
             
             let date = Date()

@@ -26,7 +26,7 @@ class PostManager {
                 completionHandler([Post]())
                 
             }else {
-                
+            
                 let parsedData = data as! NSDictionary
                 let keys = parsedData.allKeys as! [String]
                 

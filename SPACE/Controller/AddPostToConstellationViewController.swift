@@ -15,13 +15,13 @@ class AddPostToConstellationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
         setupUI()
     }
     

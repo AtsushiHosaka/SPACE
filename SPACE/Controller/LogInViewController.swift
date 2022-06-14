@@ -74,7 +74,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func nullAlert() {
-        
+    
         let alert = UIAlertController(title: "エラー", message: "ユーザーが見つかりません", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         

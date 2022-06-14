@@ -18,7 +18,7 @@ struct Post {
     var tag: Int = 0
     var description: String = ""
     var likes: Int = 0
-    
+
     init(postID: String, userID: String, photoData: UIImage, date: String, tag: Int, description: String) {
         
         self.postID = postID

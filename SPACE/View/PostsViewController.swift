@@ -123,7 +123,7 @@ class PostsViewController: UIViewController {
             
             currentPostNum = 0
         }
-        
+    
         showPost(post: posts[currentPostNum])
     }
     

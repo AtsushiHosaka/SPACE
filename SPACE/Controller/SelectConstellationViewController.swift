@@ -16,7 +16,7 @@ class SelectConstellationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         setupViews()
     }
     
