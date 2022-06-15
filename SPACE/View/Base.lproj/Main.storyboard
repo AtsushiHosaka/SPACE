@@ -142,6 +142,7 @@
                         <outlet property="leftButton" destination="21Y-EB-tAu" id="IZQ-zn-Mq7"/>
                         <outlet property="postButton" destination="boy-md-ASn" id="P9x-FB-lSR"/>
                         <outlet property="rightButton" destination="tyY-H9-W1o" id="tBn-tV-MIT"/>
+                        <outlet property="tagLabel" destination="fkF-ww-BK5" id="Vxx-cL-cEI"/>
                         <segue destination="0Bb-zL-7KA" kind="show" identifier="toPostsView" id="wyH-Rk-JnV"/>
                         <segue destination="VV4-Jq-clA" kind="show" identifier="toMakePostView" id="ESe-4x-UUh"/>
                         <segue destination="TGx-yX-xcR" kind="presentation" identifier="toLogInView" modalPresentationStyle="fullScreen" id="ye7-qP-kne"/>

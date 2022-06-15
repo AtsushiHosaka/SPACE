@@ -11,7 +11,7 @@ class PostManager {
     
     static let shared = PostManager()
     
-    let tagName = ["旅行", "散歩"]
+    let tagName = ["旅行", "散歩", "勉強", "風景"]
     
     func getPosts(path: String, completionHandler: @escaping ([Post]) -> Void) {
         
@@ -76,32 +76,33 @@ class PostManager {
             
                 let parsedData = data as! NSDictionary
                 let keys = parsedData.allKeys as! [String]
-                print(parsedData)
-                var tag = 0
-                var max = 0
+                
+                class tagData {
+                    
+                    var key: String = ""
+                    var value: Int = 0
+                    
+                    init(key: String, value: Int) {
+                        
+                        self.key = key
+                        self.value = value
+                    }
+                }
+                
+                var tags = [tagData]()
                 
                 for key in keys {
                     
-                    var postData = parsedData[key] as! NSDictionary
+                    if key == "def" { continue }
                     
-                    //if postData.va
-//                    FirebaseAPI.shared.getImage(url: postData["photoURL"] as! String, completionHandler: { image in
-//
-//                        let post = Post(postID: postData["postID"] as! String,
-//                                        userID: postData["userID"] as! String,
-//                                        photoData: image!,
-//                                        date: postData["date"] as! String,
-//                                        tag: postData["tag"] as! Int,
-//                                        description: postData["description"] as! String)
-//
-//                        posts.append(post)
-//                    })
-                    
-                    
-                    
+                    tags.append(tagData(key: key, value: parsedData[key] as! Int))
                 }
                 
-                //completionHandler(posts)
+                tags.sort(by: { a, b -> Bool in
+                    return a.value > b.value
+                })
+                
+                completionHandler(Int(tags[0].key) ?? 0)
             }
         })
     }

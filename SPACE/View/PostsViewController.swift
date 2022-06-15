@@ -20,6 +20,8 @@ class PostsViewController: UIViewController {
         
         didSet {
             
+            loadingAlert.dismiss(animated: true)
+            
             if !posts.isEmpty {
                 
                 posts.reverse()
@@ -40,6 +42,8 @@ class PostsViewController: UIViewController {
     
     var userID: String = ""
     
+    var loadingAlert = UIAlertController(title: "Loading...", message: nil, preferredStyle: .alert)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +57,10 @@ class PostsViewController: UIViewController {
         getUserID()
         getLikePosts()
         getFavoritePosts()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         initializePost()
     }
@@ -78,6 +86,8 @@ class PostsViewController: UIViewController {
     func initializePost() {
         
         currentPostNum = 0
+        
+        present(loadingAlert, animated: true)
         
         PostManager.shared.getPosts(path: "Post/" + constellationID, completionHandler: { data in
             
@@ -162,6 +172,7 @@ class PostsViewController: UIViewController {
     func showPost(post: Post) {
         
         imageView.image = post.photoData
+        
         dateLabel.text = post.date
         tagLabel.text = "＃" + PostManager.shared.tagName[post.tag]
         descriptionLabel.text = post.description

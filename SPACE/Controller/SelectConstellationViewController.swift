@@ -14,26 +14,37 @@ class SelectConstellationViewController: UIViewController {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var tagLabel: UILabel!
     
     var constellationNum: Int = 0
+    
+    var tags = [Int]() {
+        
+        didSet {
+            
+            if tags.count == Constellation.shared.constellationName.count {
+                
+                changeConstellation(direction: 0)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PostManager.shared.getTags(constellation: "aries", completionHandler: { data in
-            
-        })
-        
         loginCheck()
         
         setupViews()
-        changeConstellation(direction: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        constellationNameLabel.text = ""
+        
         setupUI()
+        
+        getTags()
     }
     
     func loginCheck() {
@@ -41,6 +52,19 @@ class SelectConstellationViewController: UIViewController {
         if UserDefaults.standard.string(forKey: "userID") == nil {
             
             performSegue(withIdentifier: "toLogInView", sender: nil)
+        }
+    }
+    
+    func getTags() {
+        
+        tags = [Int]()
+        
+        for constellation in Constellation.shared.constellationID {
+            
+            PostManager.shared.getTags(constellation: constellation, completionHandler: { data in
+                
+                self.tags.append(data)
+            })
         }
     }
     
@@ -85,16 +109,19 @@ class SelectConstellationViewController: UIViewController {
     
     func changeConstellation(direction: Int) {
         
+        let maxNum = Constellation.shared.constellationName.count
+        
         constellationNum += direction
-        if constellationNum >= 12 {
+        if constellationNum >= maxNum {
             
-            constellationNum -= 12
+            constellationNum -= maxNum
         }
         if constellationNum < 0 {
             
-            constellationNum += 12
+            constellationNum += maxNum
         }
         
+        tagLabel.text = "＃" + PostManager.shared.tagName[tags[constellationNum]]
         constellationNameLabel.text = Constellation.shared.constellationName[constellationNum]
     }
     

@@ -142,7 +142,7 @@ struct FirebaseAPI {
         ref.child("Constellation").child(constellation).observeSingleEvent(of: .value, with: { snapshot in
             
             let value = snapshot.value as? NSDictionary
-            print(snapshot.value)
+            
             completionHandler(value)
             
         }) { error in

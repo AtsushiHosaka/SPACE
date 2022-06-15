@@ -17,6 +17,8 @@ class AccountViewController: UIViewController {
         
         didSet {
             
+            loadingAlert.dismiss(animated: true)
+            
             posts.reverse()
             
             collectionView.reloadData()
@@ -27,10 +29,12 @@ class AccountViewController: UIViewController {
     
     var selectedCellNum: Int = 0
     
+    let loadingAlert = UIAlertController(title: "Loading...", message: nil, preferredStyle: .alert)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        initGetPost()
+        initButton()
         
         setupCollectionView()
     }
@@ -39,6 +43,12 @@ class AccountViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setupUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        getFavoritePosts()
     }
     
     func setupUI() {
@@ -73,12 +83,10 @@ class AccountViewController: UIViewController {
         collectionView.backgroundColor = nil
     }
     
-    func initGetPost() {
+    func initButton() {
         
         favoriteButton.tintColor = UIColor(white: 252 / 255, alpha: 1)
         pastButton.tintColor = UIColor(white: 153 / 255, alpha: 1)
-        
-        getFavoritePosts()
     }
     
     @IBAction func changeMode(_ sender: UIButton) {
@@ -108,6 +116,8 @@ class AccountViewController: UIViewController {
     
     func getFavoritePosts() {
         
+        present(loadingAlert, animated: true)
+        
         let userID = UserDefaults.standard.string(forKey: "userID") ?? ""
         FirebaseAPI.shared.readPostsFromFireBase(path: "User/" + userID + "/favorites", completionHandler: { data in
             
@@ -124,6 +134,8 @@ class AccountViewController: UIViewController {
     }
     
     func getPastPosts() {
+        
+        present(loadingAlert, animated: true)
         
         let userID = UserDefaults.standard.string(forKey: "userID") ?? ""
         FirebaseAPI.shared.readPostsFromFireBase(path: "User/" + userID + "/Posts", completionHandler: { data in
