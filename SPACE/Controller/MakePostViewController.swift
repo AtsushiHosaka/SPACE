@@ -77,7 +77,7 @@ class MakePostViewController: UIViewController, UINavigationControllerDelegate, 
     @IBAction func imageButtonPressed(_ sender: Any) {
         
         let alert = UIAlertController(title: "画像を選択", message: "", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "カメラ", style: .default, handler: { _ in self.presentPickerController(sourceType: .camera)}))
+        //alert.addAction(UIAlertAction(title: "カメラ", style: .default, handler: { _ in self.presentPickerController(sourceType: .camera)}))
         alert.addAction(UIAlertAction(title: "アルバム", style: .default, handler: { _ in self.presentPickerController(sourceType: .photoLibrary)}))
         alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
         

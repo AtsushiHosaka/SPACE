@@ -19,7 +19,7 @@ struct FirebaseAPI {
     
     func readPostsFromFireBase(path: String, completionHandler: @escaping (Any?) -> Void) {
         
-        ref.child("Post").child(path).observeSingleEvent(of: .value, with: { snapshot in
+        ref.child(path).observeSingleEvent(of: .value, with: { snapshot in
             
             let value = snapshot.value as? NSDictionary
             completionHandler(value)
@@ -45,7 +45,7 @@ struct FirebaseAPI {
     
     func addPostToFireBase(constellation: String, post: Post) {
         
-        guard let data = post.photoData.jpegData(compressionQuality: 0.5) else {
+        guard let data = post.photoData.jpegData(compressionQuality: 0.2) else {
             
             return
         }
@@ -70,24 +70,24 @@ struct FirebaseAPI {
                                                                                                       "description": post.description,
                                                                                                       "likes": post.likes])
                     
-                    self.ref.child("Users").child(post.userID).updateChildValues(["postID": post.postID,
-                                                                                                      "userID": post.userID,
-                                                                                                      "photoURL": downloadURL,
-                                                                                                      "date": post.date,
-                                                                                                      "tag": post.tag,
-                                                                                                      "description": post.description,
-                                                                                                      "likes": post.likes])
+                    self.ref.child("User").child(post.userID).child("Posts").child(post.postID).updateChildValues(["postID": post.postID,
+                                                                                                                   "userID": post.userID,
+                                                                                                                   "photoURL": downloadURL,
+                                                                                                                   "date": post.date,
+                                                                                                                   "tag": post.tag,
+                                                                                                                   "description": post.description,
+                                                                                                                   "likes": post.likes])
                 }
             }
         }
     }
     
     func checkUser(userID: String, completionHandler: @escaping (Any?) -> Void) {
-    
+        
         ref.child("User").child(userID).observeSingleEvent(of: .value, with: { snapshot in
             
             let value = snapshot.value
-                
+            
             completionHandler(value)
             
         }) { error in
@@ -99,5 +99,55 @@ struct FirebaseAPI {
     func addUser(userID: String, password: String) {
         
         ref.child("User").child(userID).updateChildValues(["password": password])
+    }
+    
+    func addFavorite(userID: String, post: Post) {
+        
+        ref.child("User").child(userID).child("favorites").child(post.postID).updateChildValues(["postID": post.postID,
+                                                                                                 "userID": post.userID,
+                                                                                                 "photoURL": post.photoURL,
+                                                                                                 "date": post.date,
+                                                                                                 "tag": post.tag,
+                                                                                                 "description": post.description,
+                                                                                                 "likes": post.likes])
+    }
+    
+    func addLike(post: Post) {
+        
+        ref.child("User").child(post.userID).child("Posts").child(post.postID).child("likes").observeSingleEvent(of: .value, with: { snapshot in
+            
+            let value = (snapshot.value ?? 0) as! Int
+            
+            self.ref.child("User").child(post.userID).child("Posts").child(post.postID).updateChildValues(["likes": value + 1])
+        })
+    }
+    
+    func updateTag(constellation: String, tag: Int) {
+        
+        ref.child("Constellation").child(String(constellation)).child(String(tag)).observeSingleEvent(of: .value, with: { snapshot in
+            
+            if snapshot.value is NSNull {
+                
+                self.ref.child("Constellation").child(String(constellation)).updateChildValues([String(tag): 1])
+            }else {
+                
+                let value = snapshot.value as! Int
+                self.ref.child("Constellation").child(String(constellation)).updateChildValues([String(tag): value + 1])
+            }
+        })
+    }
+    
+    func readTagsFromFireBase(constellation: String, completionHandler: @escaping (Any?) -> Void) {
+        
+        ref.child("Constellation").child(constellation).observeSingleEvent(of: .value, with: { snapshot in
+            
+            let value = snapshot.value as? NSDictionary
+            print(snapshot.value)
+            completionHandler(value)
+            
+        }) { error in
+            
+            print(error.localizedDescription)
+        }
     }
 }

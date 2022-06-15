@@ -10,6 +10,11 @@
 		6D1390A3283A2BB20044EDC7 /* MakePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1390A2283A2BB20044EDC7 /* MakePostViewController.swift */; };
 		6D1390A5283A2BCB0044EDC7 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1390A4283A2BCB0044EDC7 /* PostsViewController.swift */; };
 		6D2D640C28587E1F000C8AE6 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D640B28587E1F000C8AE6 /* LogInViewController.swift */; };
+		6D77840D28588BCC0065F7C0 /* AddNewAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D77840C28588BCC0065F7C0 /* AddNewAccountViewController.swift */; };
+		6D77840F2858E2B30065F7C0 /* Constellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D77840E2858E2B30065F7C0 /* Constellation.swift */; };
+		6D778411285916900065F7C0 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D778410285916900065F7C0 /* AccountViewController.swift */; };
+		6D77841328591AF50065F7C0 /* AccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D77841228591AF50065F7C0 /* AccountCollectionViewCell.swift */; };
+		6D7784152859C31F0065F7C0 /* AccountPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7784142859C31F0065F7C0 /* AccountPostsViewController.swift */; };
 		6D7805BF284A50C4004F2A6E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7805BE284A50C4004F2A6E /* Post.swift */; };
 		6D8D4EC1284C0BDE008E6EA2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6D8D4EC0284C0BDE008E6EA2 /* FirebaseAnalytics */; };
 		6D8D4EC3284C0BDE008E6EA2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6D8D4EC2284C0BDE008E6EA2 /* FirebaseAuth */; };
@@ -25,9 +30,7 @@
 		6DA42A252839DC9200A89BC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DA42A232839DC9200A89BC0 /* Main.storyboard */; };
 		6DA42A272839DC9300A89BC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DA42A262839DC9300A89BC0 /* Assets.xcassets */; };
 		6DA42A2A2839DC9300A89BC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DA42A282839DC9300A89BC0 /* LaunchScreen.storyboard */; };
-		6DEFEA37284B02470068243D /* IMG_0009.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEFEA36284B02470068243D /* IMG_0009.png */; };
 		6DEFEA39284B3B7D0068243D /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFEA38284B3B7D0068243D /* PostManager.swift */; };
-		6DEFEA3B284B3FF50068243D /* IMG_0050.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEFEA3A284B3FF40068243D /* IMG_0050.png */; };
 		6DEFEA3D284BAB8A0068243D /* FireBaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DEFEA3C284BAB8A0068243D /* FireBaseAPI.swift */; };
 		6DF159B3283A13F10084A9E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DF159B2283A13F10084A9E1 /* GoogleService-Info.plist */; };
 		6DF159B9283A1C230084A9E1 /* Rounded M+ 2m bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DF159B8283A1C230084A9E1 /* Rounded M+ 2m bold.ttf */; };
@@ -37,6 +40,11 @@
 		6D1390A2283A2BB20044EDC7 /* MakePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePostViewController.swift; sourceTree = "<group>"; };
 		6D1390A4283A2BCB0044EDC7 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostsViewController.swift; path = SPACE/View/PostsViewController.swift; sourceTree = SOURCE_ROOT; };
 		6D2D640B28587E1F000C8AE6 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LogInViewController.swift; path = SPACE/Controller/LogInViewController.swift; sourceTree = SOURCE_ROOT; };
+		6D77840C28588BCC0065F7C0 /* AddNewAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddNewAccountViewController.swift; path = SPACE/Controller/AddNewAccountViewController.swift; sourceTree = SOURCE_ROOT; };
+		6D77840E2858E2B30065F7C0 /* Constellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constellation.swift; path = SPACE/View/Constellation.swift; sourceTree = SOURCE_ROOT; };
+		6D778410285916900065F7C0 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountViewController.swift; path = SPACE/Model/AccountViewController.swift; sourceTree = SOURCE_ROOT; };
+		6D77841228591AF50065F7C0 /* AccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCollectionViewCell.swift; sourceTree = "<group>"; };
+		6D7784142859C31F0065F7C0 /* AccountPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPostsViewController.swift; sourceTree = "<group>"; };
 		6D7805BE284A50C4004F2A6E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		6D8D4EC8284C1D81008E6EA2 /* unselected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unselected.png; sourceTree = "<group>"; };
 		6D8D4ECA284C1FFD008E6EA2 /* AddPostToConstellationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostToConstellationViewController.swift; sourceTree = "<group>"; };
@@ -49,9 +57,7 @@
 		6DA42A262839DC9300A89BC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6DA42A292839DC9300A89BC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6DA42A2B2839DC9300A89BC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6DEFEA36284B02470068243D /* IMG_0009.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0009.png; sourceTree = "<group>"; };
 		6DEFEA38284B3B7D0068243D /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
-		6DEFEA3A284B3FF40068243D /* IMG_0050.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_0050.png; sourceTree = "<group>"; };
 		6DEFEA3C284BAB8A0068243D /* FireBaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseAPI.swift; sourceTree = "<group>"; };
 		6DF159B2283A13F10084A9E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6DF159B8283A1C230084A9E1 /* Rounded M+ 2m bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rounded M+ 2m bold.ttf"; sourceTree = "<group>"; };
@@ -102,8 +108,6 @@
 				6DA42A282839DC9300A89BC0 /* LaunchScreen.storyboard */,
 				6DA42A2B2839DC9300A89BC0 /* Info.plist */,
 				6DF159B2283A13F10084A9E1 /* GoogleService-Info.plist */,
-				6DEFEA36284B02470068243D /* IMG_0009.png */,
-				6DEFEA3A284B3FF40068243D /* IMG_0050.png */,
 				6D8D4EC8284C1D81008E6EA2 /* unselected.png */,
 				6D8D4ED1284C23D4008E6EA2 /* bg_2.png */,
 			);
@@ -129,6 +133,7 @@
 		6DF159BC283A1C8E0084A9E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6D77840E2858E2B30065F7C0 /* Constellation.swift */,
 				6D7805BE284A50C4004F2A6E /* Post.swift */,
 				6DEFEA38284B3B7D0068243D /* PostManager.swift */,
 				6DEFEA3C284BAB8A0068243D /* FireBaseAPI.swift */,
@@ -139,11 +144,15 @@
 		6DF159BD283A1C920084A9E1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6D778410285916900065F7C0 /* AccountViewController.swift */,
+				6D7784142859C31F0065F7C0 /* AccountPostsViewController.swift */,
 				6D2D640B28587E1F000C8AE6 /* LogInViewController.swift */,
 				6D1390A4283A2BCB0044EDC7 /* PostsViewController.swift */,
 				6DA42A212839DC9200A89BC0 /* SelectConstellationViewController.swift */,
 				6D1390A2283A2BB20044EDC7 /* MakePostViewController.swift */,
 				6D8D4ECA284C1FFD008E6EA2 /* AddPostToConstellationViewController.swift */,
+				6D77840C28588BCC0065F7C0 /* AddNewAccountViewController.swift */,
+				6D77841228591AF50065F7C0 /* AccountCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -220,11 +229,9 @@
 				6DA42A2A2839DC9300A89BC0 /* LaunchScreen.storyboard in Resources */,
 				6DF159B9283A1C230084A9E1 /* Rounded M+ 2m bold.ttf in Resources */,
 				6D8D4ED2284C23D4008E6EA2 /* bg_2.png in Resources */,
-				6DEFEA37284B02470068243D /* IMG_0009.png in Resources */,
 				6DF159B3283A13F10084A9E1 /* GoogleService-Info.plist in Resources */,
 				6DA42A272839DC9300A89BC0 /* Assets.xcassets in Resources */,
 				6D8D4EC9284C1D82008E6EA2 /* unselected.png in Resources */,
-				6DEFEA3B284B3FF50068243D /* IMG_0050.png in Resources */,
 				6DA42A252839DC9200A89BC0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,13 +245,18 @@
 			files = (
 				6DA42A222839DC9200A89BC0 /* SelectConstellationViewController.swift in Sources */,
 				6DA42A1E2839DC9200A89BC0 /* AppDelegate.swift in Sources */,
+				6D778411285916900065F7C0 /* AccountViewController.swift in Sources */,
 				6D1390A3283A2BB20044EDC7 /* MakePostViewController.swift in Sources */,
+				6D77840D28588BCC0065F7C0 /* AddNewAccountViewController.swift in Sources */,
 				6D7805BF284A50C4004F2A6E /* Post.swift in Sources */,
+				6D77840F2858E2B30065F7C0 /* Constellation.swift in Sources */,
 				6D8D4ECB284C1FFD008E6EA2 /* AddPostToConstellationViewController.swift in Sources */,
 				6DEFEA39284B3B7D0068243D /* PostManager.swift in Sources */,
 				6DA42A202839DC9200A89BC0 /* SceneDelegate.swift in Sources */,
+				6D7784152859C31F0065F7C0 /* AccountPostsViewController.swift in Sources */,
 				6D1390A5283A2BCB0044EDC7 /* PostsViewController.swift in Sources */,
 				6D2D640C28587E1F000C8AE6 /* LogInViewController.swift in Sources */,
+				6D77841328591AF50065F7C0 /* AccountCollectionViewCell.swift in Sources */,
 				6DEFEA3D284BAB8A0068243D /* FireBaseAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

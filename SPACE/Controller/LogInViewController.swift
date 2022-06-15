@@ -65,6 +65,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    @IBAction func createAccountButtonPressed() {
+        
+        performSegue(withIdentifier: "toAddNewAccountView", sender: nil)
+    }
+    
     func emptyAlert() {
         
         let alert = UIAlertController(title: "エラー", message: "すべての項目に入力してください", preferredStyle: .alert)
@@ -94,11 +99,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         if data["password"] as? String ?? "" == passwordTextField.text {
             
             UserDefaults.standard.set(adressTextField.text, forKey: "userID")
-            performSegue(withIdentifier: "toSelectConstellationView", sender: nil)
+            dismiss(animated: true)
         }else {
             
             errorAlert()
         }
     }
-    
 }

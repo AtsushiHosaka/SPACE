@@ -10,7 +10,6 @@ import UIKit
 class PostsViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
@@ -21,8 +20,11 @@ class PostsViewController: UIViewController {
         
         didSet {
             
-            posts.reverse()
-            showPost(post: posts[currentPostNum])
+            if !posts.isEmpty {
+                
+                posts.reverse()
+                showPost(post: posts[currentPostNum])
+            }
         }
     }
     
@@ -30,10 +32,17 @@ class PostsViewController: UIViewController {
     
     var isShowingDescription: Bool = false
     
+    var constellationName: String = ""
+    var constellationID: String = ""
+    
+    var likePostsID = [String]()
+    var favoritePostsID = [String]()
+    
+    var userID: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        test()
         setupViews()
     }
     
@@ -41,17 +50,18 @@ class PostsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         setupUI()
-        initializePost()
-    }
-    
-    func test() {
+        getUserID()
+        getLikePosts()
+        getFavoritePosts()
         
-        backgroundImageView.isHidden = true
+        initializePost()
     }
     
     func setupUI() {
         
         self.tabBarController?.tabBar.isHidden = true
+        
+        self.title = constellationName
         
         dateLabel.alpha = 0
         tagLabel.alpha = 0
@@ -69,22 +79,44 @@ class PostsViewController: UIViewController {
         
         currentPostNum = 0
         
-        PostManager.shared.getPosts(constellation: "test", completionHandler: { data in
+        PostManager.shared.getPosts(path: "Post/" + constellationID, completionHandler: { data in
             
             self.posts = data
         })
+    }
+    
+    func getUserID() {
+        
+        userID = UserDefaults.standard.string(forKey: "userID") ?? ""
+    }
+    
+    func getLikePosts() {
+        
+        likePostsID = (UserDefaults.standard.array(forKey: "likes" + userID) ?? [String]()) as! [String]
+    }
+    
+    func getFavoritePosts() {
+        
+        favoritePostsID = (UserDefaults.standard.array(forKey: "favorites" + userID) ?? [String]()) as! [String]
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
         
         likeButton.tintColor = UIColor(red: 1, green: 0, blue: 167 / 255, alpha: 1)
         likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        
+        PostManager.shared.addLike(post: posts[currentPostNum])
     }
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         
-        favoriteButton.tintColor = UIColor(red: 1, green: 245 / 255, blue: 0, alpha: 1)
-        favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        if !favoritePostsID.contains(posts[currentPostNum].postID) {
+            
+            favoriteButton.tintColor = UIColor(red: 1, green: 245 / 255, blue: 0, alpha: 1)
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            
+            PostManager.shared.addFavorite(userID: userID, post: posts[currentPostNum])
+        }
     }
     
     @IBAction func swipeUP(_ sender: Any) {
@@ -134,11 +166,28 @@ class PostsViewController: UIViewController {
         tagLabel.text = "＃" + PostManager.shared.tagName[post.tag]
         descriptionLabel.text = post.description
         
-        likeButton.tintColor = UIColor(white: 252 / 255, alpha: 1)
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        getLikePosts()
+        getFavoritePosts()
         
-        favoriteButton.tintColor = UIColor(white: 252 / 255, alpha: 1)
-        favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        if likePostsID.contains(post.postID) {
+            
+            likeButton.tintColor = UIColor(red: 1, green: 0, blue: 167 / 255, alpha: 1)
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }else {
+            
+            likeButton.tintColor = UIColor(white: 252 / 255, alpha: 1)
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        
+        if favoritePostsID.contains(post.postID) {
+            
+            favoriteButton.tintColor = UIColor(red: 1, green: 245 / 255, blue: 0, alpha: 1)
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        }else {
+            
+            favoriteButton.tintColor = UIColor(white: 252 / 255, alpha: 1)
+            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
     }
     
     func showDescription() {

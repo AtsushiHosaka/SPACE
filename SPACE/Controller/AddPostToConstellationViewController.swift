@@ -10,8 +10,11 @@ import UIKit
 class AddPostToConstellationViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var constellationNameLabel: UILabel!
     
     var post = Post(postID: "", userID: "", photoData: UIImage(), date: "", tag: 0, description: "")
+    
+    var constellationNum: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,7 @@ class AddPostToConstellationViewController: UIViewController {
         super.viewWillAppear(animated)
     
         setupUI()
+        changeConstellation(direction: 0)
     }
     
     func setupViews() {
@@ -52,8 +56,35 @@ class AddPostToConstellationViewController: UIViewController {
         }
     }
     
+    @IBAction func leftButtonPressed(_ sender: Any) {
+        
+        changeConstellation(direction: -1)
+    }
+    
+    @IBAction func rightButtonPressed(_ sender: Any) {
+        
+        changeConstellation(direction: 1)
+    }
+    
     func sendNewPost() {
         
-        FirebaseAPI.shared.addPostToFireBase(constellation: "test", post: post)
+        FirebaseAPI.shared.addPostToFireBase(constellation: Constellation.shared.constellationID[constellationNum], post: post)
+        
+        FirebaseAPI.shared.updateTag(constellation: Constellation.shared.constellationID[constellationNum], tag: post.tag)
+    }
+    
+    func changeConstellation(direction: Int) {
+        
+        constellationNum += direction
+        if constellationNum >= 12 {
+            
+            constellationNum -= 12
+        }
+        if constellationNum < 0 {
+            
+            constellationNum += 12
+        }
+        
+        constellationNameLabel.text = Constellation.shared.constellationName[constellationNum]
     }
 }
