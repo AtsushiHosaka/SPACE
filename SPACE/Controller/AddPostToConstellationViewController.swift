@@ -11,6 +11,7 @@ class AddPostToConstellationViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var constellationNameLabel: UILabel!
+    @IBOutlet weak var constellationImageView: UIImageView!
     
     var post = Post(postID: "", userID: "", photoData: UIImage(), date: "", tag: 0, description: "")
     
@@ -75,16 +76,19 @@ class AddPostToConstellationViewController: UIViewController {
     
     func changeConstellation(direction: Int) {
         
+        let maxNum = Constellation.shared.constellationName.count
+        
         constellationNum += direction
-        if constellationNum >= 12 {
+        if constellationNum >= maxNum {
             
-            constellationNum -= 12
+            constellationNum -= maxNum
         }
         if constellationNum < 0 {
             
-            constellationNum += 12
+            constellationNum += maxNum
         }
         
+        constellationImageView.image = UIImage(named: Constellation.shared.constellationID[constellationNum])
         constellationNameLabel.text = Constellation.shared.constellationName[constellationNum]
     }
 }

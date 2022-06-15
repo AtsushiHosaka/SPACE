@@ -15,6 +15,7 @@ class SelectConstellationViewController: UIViewController {
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var constellationImageView: UIImageView!
     
     var constellationNum: Int = 0
     
@@ -121,6 +122,7 @@ class SelectConstellationViewController: UIViewController {
             constellationNum += maxNum
         }
         
+        constellationImageView.image = UIImage(named: Constellation.shared.constellationID[constellationNum])
         tagLabel.text = "＃" + PostManager.shared.tagName[tags[constellationNum]]
         constellationNameLabel.text = Constellation.shared.constellationName[constellationNum]
     }
