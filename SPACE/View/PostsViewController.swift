@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 class PostsViewController: UIViewController {
 
@@ -25,7 +26,7 @@ class PostsViewController: UIViewController {
             if !posts.isEmpty {
                 
                 posts.reverse()
-                showPost(post: posts[currentPostNum])
+                showPost(post: posts[0])
             }
         }
     }
@@ -91,7 +92,7 @@ class PostsViewController: UIViewController {
         
         PostManager.shared.getPosts(path: "Post/" + constellationID, completionHandler: { data in
             
-            self.posts = data
+            self.posts = self.filterPosts(postsArray: data)
         })
     }
     
@@ -108,6 +109,25 @@ class PostsViewController: UIViewController {
     func getFavoritePosts() {
         
         favoritePostsID = (UserDefaults.standard.array(forKey: "favorites" + userID) ?? [String]()) as! [String]
+    }
+    
+    func filterPosts(postsArray: [Post]) -> [Post] {
+        
+        var currentPosts = postsArray
+        let blockedUsers: [String] = (UserDefaults.standard.array(forKey: "block") ?? [String]()) as! [String]
+        
+        let count = currentPosts.count
+        
+        for i in 0 ..< count {
+            
+            let j = count - i - 1
+            if blockedUsers.contains(currentPosts[j].userID) {
+                
+                currentPosts.remove(at: j)
+            }
+        }
+        
+        return currentPosts
     }
     
     @IBAction func likeButtonPressed(_ sender: Any) {
@@ -167,6 +187,38 @@ class PostsViewController: UIViewController {
         }
     
         showPost(post: posts[currentPostNum])
+    }
+    
+    @IBAction func flagButtonPressed() {
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "このユーザーをブロック", style: .destructive, handler: { _ in
+            
+            self.blockUser()
+        }))
+        alert.addAction(UIAlertAction(title: "この投稿を報告", style: .destructive, handler: { _ in
+            
+            self.flagPost()
+        }))
+        
+        present(alert, animated: true)
+    }
+    
+    func flagPost() {
+        
+        let date = Date()
+        let dateStr = String(date.year) + "-" + String(date.month) + "-" + String(date.day)
+        FirebaseAPI.shared.flagPost(date: dateStr, postID: posts[currentPostNum].postID)
+    }
+    
+    func blockUser() {
+        
+        var blockedUsers = (UserDefaults.standard.array(forKey: "block") ?? [String]()) as! [String]
+        blockedUsers.append(posts[currentPostNum].userID)
+        
+        UserDefaults.standard.set(blockedUsers, forKey: "block")
+        
+        posts = filterPosts(postsArray: posts)
     }
     
     func showPost(post: Post) {

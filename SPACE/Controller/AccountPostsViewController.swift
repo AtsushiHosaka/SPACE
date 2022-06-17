@@ -16,6 +16,7 @@ class AccountPostsViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var trashButton: UIBarButtonItem!
     
     var posts = [Post]()
     
@@ -24,7 +25,6 @@ class AccountPostsViewController: UIViewController {
     var isShowingDescription: Bool = false
     
     var constellationName: String = ""
-    var constellationID: String = ""
     
     var likePostsID = [String]()
     var favoritePostsID = [String]()
@@ -60,6 +60,16 @@ class AccountPostsViewController: UIViewController {
         dateLabel.alpha = 0
         tagLabel.alpha = 0
         descriptionLabel.alpha = 0
+        
+        if mode == 2 {
+            
+            trashButton.isEnabled = true
+            trashButton.tintColor = UIColor(white: 252 / 255, alpha: 1)
+        }else {
+            
+            trashButton.isEnabled = false
+            trashButton.tintColor = UIColor.clear
+        }
     }
     
     func setupViews() {
@@ -152,6 +162,31 @@ class AccountPostsViewController: UIViewController {
         }
     
         showPost(post: posts[currentPostNum])
+    }
+    
+    @IBAction func trashButtonPressed() {
+        
+        let alert = UIAlertController(title: "この投稿を削除しますか？", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "削除", style: .destructive, handler: { _ in
+            
+            self.removePost()
+        }))
+        alert.addAction(UIAlertAction(title: "cancel", style: .default))
+        
+        present(alert, animated: true)
+    }
+    
+    func removePost() {
+        
+        FirebaseAPI.shared.removePost(post: posts[currentPostNum])
+        
+        posts.remove(at: currentPostNum)
+        currentPostNum = 0
+        
+        if !posts.isEmpty {
+            
+            showPost(post: posts[currentPostNum])
+        }
     }
     
     func showPost(post: Post) {

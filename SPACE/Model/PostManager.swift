@@ -50,7 +50,8 @@ class PostManager {
                                 photoData: image!,
                                 date: postData["date"] as! String,
                                 tag: postData["tag"] as! Int,
-                                description: postData["description"] as! String)
+                                description: postData["description"] as! String,
+                                constellation: postData["constellation"] as! String)
                 
                 post.photoURL = postData["photoURL"] as! String
                 

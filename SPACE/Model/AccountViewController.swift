@@ -124,6 +124,8 @@ class AccountViewController: UIViewController {
             if data is NSNull || data == nil {
                 
                 print("error")
+                
+                self.posts = []
             }else {
                 
                 let parsedData = data as! NSDictionary
@@ -143,6 +145,8 @@ class AccountViewController: UIViewController {
             if data is NSNull || data == nil {
                 
                 print("error")
+                
+                self.posts = []
             }else {
                 
                 let parsedData = data as! NSDictionary

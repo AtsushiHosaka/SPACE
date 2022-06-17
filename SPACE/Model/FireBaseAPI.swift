@@ -68,7 +68,8 @@ struct FirebaseAPI {
                                                                                                       "date": post.date,
                                                                                                       "tag": post.tag,
                                                                                                       "description": post.description,
-                                                                                                      "likes": post.likes])
+                                                                                                      "likes": post.likes,
+                                                                                                      "constellation": post.constellation])
                     
                     self.ref.child("User").child(post.userID).child("Posts").child(post.postID).updateChildValues(["postID": post.postID,
                                                                                                                    "userID": post.userID,
@@ -76,7 +77,8 @@ struct FirebaseAPI {
                                                                                                                    "date": post.date,
                                                                                                                    "tag": post.tag,
                                                                                                                    "description": post.description,
-                                                                                                                   "likes": post.likes])
+                                                                                                                   "likes": post.likes,
+                                                                                                                   "constellation": post.constellation])
                 }
             }
         }
@@ -109,7 +111,8 @@ struct FirebaseAPI {
                                                                                                  "date": post.date,
                                                                                                  "tag": post.tag,
                                                                                                  "description": post.description,
-                                                                                                 "likes": post.likes])
+                                                                                                 "likes": post.likes,
+                                                                                                 "constellation": post.constellation])
     }
     
     func addLike(post: Post) {
@@ -149,5 +152,16 @@ struct FirebaseAPI {
             
             print(error.localizedDescription)
         }
+    }
+    
+    func flagPost(date: String, postID: String) {
+        
+        ref.child("Report").child(date).updateChildValues([postID: postID])
+    }
+    
+    func removePost(post: Post) {
+        
+        ref.child("Post").child(post.constellation).child(post.postID).removeValue()
+        ref.child("User").child(post.userID).child("Posts").child(post.postID).removeValue()
     }
 }

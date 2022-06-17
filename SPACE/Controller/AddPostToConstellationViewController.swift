@@ -13,7 +13,7 @@ class AddPostToConstellationViewController: UIViewController {
     @IBOutlet weak var constellationNameLabel: UILabel!
     @IBOutlet weak var constellationImageView: UIImageView!
     
-    var post = Post(postID: "", userID: "", photoData: UIImage(), date: "", tag: 0, description: "")
+    var post = Post(postID: "", userID: "", photoData: UIImage(), date: "", tag: 0, description: "", constellation: "")
     
     var constellationNum: Int = 0
 
@@ -41,6 +41,7 @@ class AddPostToConstellationViewController: UIViewController {
     }
     
     @IBAction func swipeUP(_ sender: Any) {
+        post.constellation = Constellation.shared.constellationID[constellationNum]
         
         sendNewPost()
         

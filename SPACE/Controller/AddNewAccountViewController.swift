@@ -65,7 +65,7 @@ class AddNewAccountViewController: UIViewController, UITextFieldDelegate {
                         FirebaseAPI.shared.addUser(userID: self.userIDTextField.text!, password: self.passwordTextField.text!)
                         UserDefaults.standard.set(self.userIDTextField.text!, forKey: "userID")
                         
-                        self.dismiss(animated: true)
+                        self.navigationController?.popToRootViewController(animated: true)
                     }else {
                         
                         self.existAlert()

@@ -136,7 +136,8 @@ class MakePostViewController: UIViewController, UINavigationControllerDelegate, 
                                                    photoData: imageView.image!,
                                                    date: String(date.year) + "/" + String(date.month) + "/" + String(date.day),
                                                    tag: selectedTag,
-                                                   description: descriptionTextField.text!)
+                                                   description: descriptionTextField.text!,
+                                                   constellation: "")
         }
     }
 }

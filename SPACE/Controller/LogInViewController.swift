@@ -67,7 +67,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func createAccountButtonPressed() {
         
-        performSegue(withIdentifier: "toAddNewAccountView", sender: nil)
+        performSegue(withIdentifier: "toAgreementView", sender: nil)
     }
     
     func emptyAlert() {

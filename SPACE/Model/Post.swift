@@ -18,8 +18,9 @@ struct Post {
     var tag: Int = 0
     var description: String = ""
     var likes: Int = 0
+    var constellation: String = ""
 
-    init(postID: String, userID: String, photoData: UIImage, date: String, tag: Int, description: String) {
+    init(postID: String, userID: String, photoData: UIImage, date: String, tag: Int, description: String, constellation: String) {
         
         self.postID = postID
         self.userID = userID
@@ -27,5 +28,6 @@ struct Post {
         self.date = date
         self.tag = tag
         self.description = description
+        self.constellation = constellation
     }
 }
